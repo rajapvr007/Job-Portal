@@ -78,7 +78,7 @@ const Searchbar = (props) => {
         </select>
         <button
           onClick={searchBtn}
-          className="font-semibold py-3 pl-4 w-64 rounded-lg bg-gray-200 hover:bg-gray-400"
+          className="font-semibold py-3 pl-4 w-64 rounded-lg bg-gray-200 hover:bg-gray-400 "
         >
           search
         </button>

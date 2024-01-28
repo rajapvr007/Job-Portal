@@ -3,8 +3,8 @@ import Navbar from "./Components/Navbar/Navbar";
 import Header from "./Components/Header/Header";
 import Searchbar from "./Components/Searchbar/Searchbar";
 import JabCard from "./Components/JabCard/JabCard";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   collection,
   addDoc,
@@ -69,21 +69,20 @@ const App = () => {
     fetchJobs();
   }, []);
 
-  
   const PostAJob = async (jobpost) => {
     try {
       const docRef = await addDoc(collection(db, "jobs"), {
         ...jobpost,
         postedOn: serverTimestamp(),
       });
-      toast.success('Job posted successfully', {
+      toast.success("Job posted successfully", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         draggable: true,
       });
-      return ({mess: "Job posted successfully"})
+      return { mess: "Job posted successfully" };
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -96,11 +95,13 @@ const App = () => {
       {/* <Alert /> */}
       <Header />
       <Searchbar fetchJobsCutsom={fetchJobsCutsom} />
-      <button onClick={fetchJobs} className="flex pl-[1250px] mt-10">
-        <p className="bg-gray-200 px-10 py-2 rounded-md text-black">
-          Clear Search
-        </p>
-      </button>
+      <div className="flex items-center justify-center">
+        <button onClick={fetchJobs} className="flex mt-10 ">
+          <p className="bg-gray-200 px-10 py-2 rounded-md text-black">
+            Clear Search
+          </p>
+        </button>
+      </div>
       {jobs.map((job, index) => (
         <JabCard key={job.id} {...job} />
       ))}
