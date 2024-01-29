@@ -39,8 +39,17 @@ export default function NewJobPost(props) {
   // we need to send this data to firebase
   const handleSubmit = async () => {
     // if user has not filled all the fields then we will show a toast
-    if(jobpost.title === "" || jobpost.type === "" || jobpost.location === "" || jobpost.experience === "" || jobpost.companyName === "" || jobpost.companyUrl === "" || jobpost.link === "" || jobpost.skills.length === 0){ 
-      toast.warn("Please fill all the fields",{
+    if (
+      jobpost.title === "" ||
+      jobpost.type === "" ||
+      jobpost.location === "" ||
+      jobpost.experience === "" ||
+      jobpost.companyName === "" ||
+      jobpost.companyUrl === "" ||
+      jobpost.link === "" ||
+      jobpost.skills.length === 0
+    ) {
+      toast.warn("Please fill all the fields", {
         position: "top-center",
         autoClose: 800,
         hideProgressBar: false,
@@ -54,8 +63,8 @@ export default function NewJobPost(props) {
 
     const res = await props.PostAJob(jobpost);
     // if job is posted successfully then we will show a toast and close the alert dialog
-    if(res.mess ){
-      setJobpost ({
+    if (res.mess) {
+      setJobpost({
         title: "",
         type: "",
         location: "",
@@ -71,7 +80,7 @@ export default function NewJobPost(props) {
   };
   return (
     <>
-      <div className="text-end mr-5">
+      <div className="text-end mr-5 ">
         <button
           className="text-black bg-gray-300 rounded-full px-8 py-2 font-semibold "
           onClick={() => setShow(true)}
@@ -84,16 +93,16 @@ export default function NewJobPost(props) {
         <div className="fixed inset-0 bg-gray-300/50 flex items-center justify-center p-8">
           <div className="bg-white rounded-lg p-8">
             {/* header of the alert dialog   */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <h1 className="text-xl font-bold ">Post A Job</h1>
               <button onClick={() => setShow(false)}>
                 <ImCross />
               </button>
             </div>
 
-            <div className="flex flex-col gap-4 mt-5">
+            <div className="lg:flex lg:flex-col lg:gap-4 lg:mt-5 items-center justify-center ">
               {/* first box of the alert dialog title   */}
-              <div className="space-x-2">
+              <div className="lg:space-x-2 space-x-1 mb-2" >
                 <select
                   onChange={handleonChange}
                   name="title"
@@ -101,12 +110,17 @@ export default function NewJobPost(props) {
                   value={jobpost.title}
                   defaultValue={jobpost.selectValue}
                   //   {jobCriteria.title}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg "
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32 "
                 >
                   <option value="" hidden disabled selected>
                     Job Role
                   </option>
-                  <option defaultValue={jobpost.selectValue} value="Frontend Developer">Frontend Developer</option>
+                  <option
+                    defaultValue={jobpost.selectValue}
+                    value="Frontend Developer"
+                  >
+                    Frontend Developer
+                  </option>
                   <option value="Backend Developer">Backend Developer</option>
                   <option value="IOS Developer">IOS Developer</option>
                   <option value="Android Developer">Android Developer</option>
@@ -121,7 +135,7 @@ export default function NewJobPost(props) {
                   name="type"
                   value={jobpost.type}
                   //   {jobCriteria.type}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg"
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32"
                 >
                   <option value="" hidden disabled selected>
                     Job Type
@@ -133,13 +147,13 @@ export default function NewJobPost(props) {
                 </select>
               </div>
               {/* second box of the alert dialog   */}
-              <div className="space-x-2">
+              <div className="lg:space-x-2 space-x-1 mb-2">
                 <select
                   onChange={handleonChange}
                   name="location"
                   value={jobpost.location}
                   //   {jobCriteria.location}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg"
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32"
                 >
                   <option value="" hidden disabled selected>
                     Location
@@ -155,7 +169,7 @@ export default function NewJobPost(props) {
                   name="experience"
                   value={jobpost.experience}
                   //   {jobCriteria.experience}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg"
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32"
                 >
                   <option value="" hidden disabled selected>
                     Experience
@@ -167,23 +181,22 @@ export default function NewJobPost(props) {
                 </select>
               </div>
               {/* third box of the alert dialog company Name compnay url   */}
-              <div className="space-x-2">
+              <div className="lg:space-x-2 space-x-1 mb-2">
                 <input
                   onChange={handleonChange}
                   type="text"
                   name="companyName"
                   placeholder="company Name"
                   value={jobpost.companyName}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg"
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32"
                 ></input>
                 <input
                   onChange={handleonChange}
                   type="url"
-                  
                   name="companyUrl"
                   placeholder="company URL"
                   value={jobpost.companyUrl}
-                  className="font-semibold py-3 pl-4 w-64 bg-zinc-200 rounded-lg"
+                  className="font-semibold py-3 pl-4 lg:w-64 bg-zinc-200 rounded-lg w-32"
                 ></input>
               </div>
               {/* fourth box of the alert dialog   */}
@@ -194,11 +207,11 @@ export default function NewJobPost(props) {
                   name="link"
                   value={jobpost.link}
                   placeholder="Job URL"
-                  className="font-semibold py-3 pl-4 bg-zinc-200 rounded-lg w-full"
+                  className="font-semibold py-3 pl-4 bg-zinc-200 rounded-lg w-full "
                 ></input>
               </div>
               {/* fifth box of the alert dialog   SKILLS*/}
-              <div>
+              <div className="mb-2">
                 <h1>Skills</h1>
                 <div className="flex flex-wrap gap-2">
                   {skills.map((skill, index) => {
